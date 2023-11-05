@@ -1,0 +1,23 @@
+{
+    "plugboard": [
+        "AR",
+        "GK",
+        "OX",
+        "PS",
+        "TD",
+        "LF",
+        "QW",
+        "EY",
+        "UI",
+        "HJ"
+    ],
+    "key": "DOOGS",
+    "rings": [
+        5,
+        26,
+        3,
+        4,
+        2
+    ],
+    "num_rotors": 5
+}
