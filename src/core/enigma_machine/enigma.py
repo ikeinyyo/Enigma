@@ -13,6 +13,8 @@ class Enigma:
     keyboard: Keyboard
     plugboard: Plugboard
     reflector: Reflector
+    key: str
+    rings: List[int]
     rotors: List[Rotor]
 
     def __init__(
@@ -37,14 +39,16 @@ class Enigma:
     def set_rings(self, rings: List[int]) -> None:
         if len(rings) != len(self.rotors):
             raise ValueError("Rings len have to be equal of number of rotors")
+        self.rings = rings
         for index in range(len(self.rotors)):
-            self.rotors[index].set_ring(rings[index])
+            self.rotors[index].set_ring(self.rings[index])
 
     def set_key(self, key: str) -> None:
         if len(key) != len(self.rotors):
             raise ValueError("Key len have to be equal of number of rotors")
+        self.key = key
         for index in range(len(self.rotors)):
-            self.rotors[index].rotate_to_letter(key[index].upper())
+            self.rotors[index].rotate_to_letter(self.key[index].upper())
 
     def encipher(self, message: str) -> str:
         encrypted_message = ""
@@ -71,3 +75,15 @@ class Enigma:
 
         signal = self.plugboard.backward(signal)
         return self.keyboard.backward(signal)
+
+    def __str__(self) -> str:
+        rotors = "\n".join(
+            [
+                f"- Rotor {index} - {self.rotors[index]}"
+                for index in range(len(self.rotors))
+            ]
+        )
+        return (
+            f"ENGIMA - K: {self.key} - R: {self.rings} - Plugboard: {self.plugboard}\n"
+            f"{rotors}\n"
+        )

@@ -47,4 +47,4 @@ class Rotor:
         return self.left[0] == self.notch
 
     def __str__(self) -> str:
-        return f"{self.left}\n{self.right}"
+        return f"N: {self.notch} - F: {self.left[0]}"

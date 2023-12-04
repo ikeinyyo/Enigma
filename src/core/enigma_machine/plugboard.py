@@ -8,12 +8,14 @@ from .alphabet import alphabet
 class Plugboard:
     left: str = alphabet
     right: str = alphabet
+    pairs: List[str] = None
 
     def __init__(self, pairs: List[str]) -> None:
-        self._configure_pairs(pairs)
+        self.pairs = pairs
+        self._configure_pairs()
 
-    def _configure_pairs(self, pairs: List[str]) -> None:
-        for pair in pairs:
+    def _configure_pairs(self) -> None:
+        for pair in self.pairs:
             A = pair[0]
             B = pair[1]
             index_A = self.left.index(A)
@@ -28,3 +30,6 @@ class Plugboard:
     def backward(self, signal: int) -> int:
         letter = self.left[signal]
         return self.right.index(letter)
+
+    def __str__(self) -> str:
+        return str(self.pairs)
